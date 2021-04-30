@@ -6,5 +6,10 @@ COPY ./src/ .
 
 RUN go build -o ../bin
 
-CMD ["../bin/hello"]
+
+FROM scratch
+
+COPY --from=builder /go/bin/* /
+
+CMD ["/hello"]
 
